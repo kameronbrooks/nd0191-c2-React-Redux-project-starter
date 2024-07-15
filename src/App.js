@@ -4,6 +4,7 @@ import {Context} from './Context';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
+import LeaderboardPage from './components/LeaderboardPage';
 
 
 const App = () => {
@@ -14,22 +15,10 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
         </Routes>
       </Router>
     </div>
-  );
-}
-
-const ConnectedApp = () => {
-  console.log('ConnectedApp');
-  return (
-    <Context.Consumer>
-      {
-        (store) => {
-          return <App store={store} />
-        }
-      }
-    </Context.Consumer>
   );
 }
 

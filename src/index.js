@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Context, Provider } from './Context';
+//import { Context, Provider } from './Context';
+import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

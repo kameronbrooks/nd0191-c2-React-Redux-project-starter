@@ -1,38 +1,90 @@
-.App {
+body {
+  background-color: #f8f9fa;
+
+}
+
+.login-form {
+  background-color: rgb(214, 221, 230);
+  padding: 10px 10px 10px 10px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 7px -4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #d3d3d3;
+
+  color: #222;
+}
+
+.hint-text {
+  color: #777;
+  font-style: italic;
   text-align: center;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  background-color: #222;
+  padding: 10px 10px 10px 10px;
+  box-shadow: 0 10px 7px -4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #d3d3d3;
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  position: relative;
+  height: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.avatar-box {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  transform: translateY(10px);
+  background-color: #ffffff;
+  box-shadow: 0 10px 7px -4px rgba(0, 0, 0, 0.2);
+
+  border: 1px solid #d3d3d3;
+  color: #222;
+  float: right;
+  width: 65px;
+  height: 65px;
+  border-radius: 7px 7px 7px 7px;
+
+  background-size: cover;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.avatar-box:hover {
+
+  transform: scale(1.07) translateY(7px);
+  box-shadow: 0 8px 10px -4px rgba(0, 0, 0, 0.2);
+}
+
+.logout-link {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 75%;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0 0 7px 7px;
+  cursor: pointer;
+}
+
+.navlinks-div {
+  margin-left: 20px;
+  padding: 3px 40px 3px 3px;
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  color: #fff;
+  border-right: rgba(255, 255, 255, 0.3) 1px solid;
+}
+
+.navlinks-div a {
+  color: #ffffff;
 }

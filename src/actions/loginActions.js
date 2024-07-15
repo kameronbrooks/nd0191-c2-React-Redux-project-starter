@@ -6,8 +6,6 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const REQUEST_USER_LOGIN = 'REQUEST_USER_LOGIN';
 export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
 
-
-
 const _requestUserLogin = () => {
   return {
     type: REQUEST_USER_LOGIN
@@ -39,7 +37,8 @@ export const userLoginRequest = async (username, password, dispatch) => {
   const response = await API._getUsers();
 
   // find the user with the given username and password
-  const user = Object.values(response).find(user => user.username === username && user.password === password);
+  const user = Object.values(response).find(user => user.id === username && user.password === password);
+
   // if the user is found, dispatch the loginUser action with the user
   if (user) {
     dispatch(_loginUser(user));
@@ -48,8 +47,6 @@ export const userLoginRequest = async (username, password, dispatch) => {
   }
 }
 
-export function handleLogoutUser() {
-  return (dispatch) => {
-    dispatch(_logoutUser());
-  }
+export function handleLogoutUser(dispatch) {
+  dispatch(_logoutUser());
 }

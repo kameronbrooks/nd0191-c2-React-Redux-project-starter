@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 
 
 
-const HomePage = () => {
+const LeaderboardPage = () => {
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
@@ -19,11 +19,11 @@ const HomePage = () => {
     <div>
       <Navbar />
       <Container>
-        <h1>Home Page</h1>
+        <h1>Leaderboard</h1>
         <p>Welcome to the home page!</p>
       </Container>
     </div>
   )
 };
 
-export default HomePage;
+export default LeaderboardPage;
