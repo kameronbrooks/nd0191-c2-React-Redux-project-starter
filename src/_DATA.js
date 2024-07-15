@@ -211,3 +211,16 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     }, 500)
   })
 }
+
+export function _deleteQuestion (question) {
+  return new Promise((resolve, reject) => {
+    if (!question) {
+      reject("Please provide a question to delete");
+    }
+
+    setTimeout(() => {
+      questions = Object.values(questions).filter(q => q.id !== question.id);
+      resolve(true)
+    }, 500)
+  })
+}

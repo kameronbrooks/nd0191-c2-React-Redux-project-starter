@@ -9,10 +9,12 @@ import { combineReducers, createStore } from 'redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import loginReducer from './reducers/loginReducer';
+import questionsReducer from './reducers/questionsReducer';
 
 const store = createStore(
   combineReducers({ 
-    login: loginReducer
+    login: loginReducer,
+    questions: questionsReducer
   })
 );
 
