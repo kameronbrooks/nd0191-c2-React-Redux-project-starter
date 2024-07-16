@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import LeaderboardPage from './components/LeaderboardPage';
+import QuestionPage from './components/QuestionPage';
 
 
 const App = () => {
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/questions/:id" element={<QuestionPage />} />
+          <Route path="/questions/new" element={<QuestionPage />} />
         </Routes>
       </Router>
     </div>

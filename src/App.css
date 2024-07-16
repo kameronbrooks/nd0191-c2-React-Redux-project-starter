@@ -127,7 +127,6 @@ body {
   flex: 0 0 32%;
   max-width: 32%;
   margin: 0.6665%
-  
 }
 
 .question-bucket {
@@ -135,15 +134,17 @@ body {
   margin: 7px 7px 7px 7px;
   border-radius: 5px 5px 5px 5px;
   box-shadow: 0 10px 7px -4px rgba(0, 0, 0, 0.2);
-  
+
 }
 
 .spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Full height of the parent */
-  width: 100%; /* Full width of the parent */
+  height: 100%;
+  /* Full height of the parent */
+  width: 100%;
+  /* Full width of the parent */
   min-height: 100px;
 }
 
@@ -166,4 +167,54 @@ body {
   padding-bottom: 15px;
   margin-bottom: 15px;
   border-bottom: 1px solid #aaa;
+}
+
+.question-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px 10px;
+
+}
+
+.author-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.answer-button {
+  width: 100%;
+}
+
+.results-div {
+  padding: 10px 10px 10px 10px;
+  border: #444 1px solid;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 10px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.results-div > .title {
+  text-align: center;
+  border-bottom: #444 1px solid;
+  border-radius: 5px 5px 0 0;
+}
+
+.results-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.results-details {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 10px 10px 10px 10px;
+}
+.results-chart{
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  justify-content: center;
 }

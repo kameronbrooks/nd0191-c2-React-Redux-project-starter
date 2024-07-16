@@ -19,11 +19,12 @@ const HomePage = () => {
 
   const dispatch = useDispatch();
 
+  // Fetch questions on load
   useEffect(() => {
-    console.log('getting questions');
-    getQuestions(dispatch);
+    (Object.values(questions).length == 0) && getQuestions(dispatch);
   },[]);
 
+  // Redirect to login if not logged in
   if (!isLoggedIn) {
     return <Navigate to="/login" />
   }
@@ -35,14 +36,14 @@ const HomePage = () => {
         <QuestionBucket 
           name="New Questions" 
           questions={
-            Object.values(questions).filter((q)=>Utils.hasUserAnsweredQuestion(user.id, q))
+            Object.values(questions).filter((q)=>!Utils.hasUserAnsweredQuestion(user.id, q))
           }
           loading={questionsLoading}
         />
         <QuestionBucket 
           name="Answered Questions" 
           questions={
-            Object.values(questions).filter((q)=>!Utils.hasUserAnsweredQuestion(user.id, q))
+            Object.values(questions).filter((q)=>Utils.hasUserAnsweredQuestion(user.id, q))
           }
           loading={questionsLoading}
         />

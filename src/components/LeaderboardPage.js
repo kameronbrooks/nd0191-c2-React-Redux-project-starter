@@ -11,6 +11,10 @@ const LeaderboardPage = () => {
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
+  const user = useSelector(state => state.login.user);
+  const users = useSelector(state => state.users.users);
+  const questions = useSelector(state => state.questions.questions);
+
   if (!isLoggedIn) {
     return <Navigate to="/login" />
   }

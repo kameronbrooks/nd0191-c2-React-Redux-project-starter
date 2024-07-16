@@ -10,15 +10,15 @@ import { combineReducers, createStore } from 'redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import loginReducer from './reducers/loginReducer';
 import questionsReducer from './reducers/questionsReducer';
+import userReducer from './reducers/userReducer';
 
 const store = createStore(
   combineReducers({ 
     login: loginReducer,
-    questions: questionsReducer
+    questions: questionsReducer,
+    users: userReducer
   })
 );
-
-console.log(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
