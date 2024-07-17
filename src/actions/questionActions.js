@@ -4,6 +4,7 @@ export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const REQUEST_QUESTIONS_ERROR = 'REQUEST_QUESTIONS_ERROR';
 
+export const REQUEST_ADD_QUESTION = 'REQUEST_ADD_QUESTION';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const ADD_QUESTION_ERROR = 'ADD_QUESTION_ERROR';
 
@@ -30,6 +31,12 @@ const _receiveQuestions = (questions) => {
 const _requestQuestionsError = () => {
   return {
     type: REQUEST_QUESTIONS_ERROR
+  }
+}
+
+const _requestAddQuestion = () => {
+  return {
+    type: REQUEST_ADD_QUESTION
   }
 }
 
@@ -88,13 +95,16 @@ export const getQuestions = async (dispatch) => {
 
 }
 
-export const addQuestion = async (question, dispatch) => {
-  dispatch(_addQuestion(question));
+export const addQuestion = async (question, dispatch, navigate) => {
+  dispatch(_requestAddQuestion());
   try {
     const response = await API._saveQuestion(question);
+    dispatch(_addQuestion(response));
+    if (navigate) {
+      navigate('/');
+    }
   } catch (error) {
     dispatch(_addQuestionError());
-
   }
 
 }
@@ -107,9 +117,9 @@ export const answerQuestion = async (user, qid, answer, dispatch) => {
       qid, 
       answer 
     });
+
   } catch (error) {
     dispatch(_answerQuestionError());
-
   }
 
 }

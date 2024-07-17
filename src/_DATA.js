@@ -173,6 +173,19 @@ export function _saveQuestion (question) {
         [formattedQuestion.id]: formattedQuestion
       }
 
+      // Update the user's questions list
+      const userQuestionList = (
+        users[question.author].questions.includes()) ? 
+        users[question.author].questions : 
+        [...( users[question.author].questions), formattedQuestion.id];
+
+      users = {
+        ...users,
+        [question.author]: {
+          ...users[question.author],
+          questions: userQuestionList
+        }
+      }
       resolve(formattedQuestion)
     }, 1000)
   })

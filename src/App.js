@@ -6,10 +6,10 @@ import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import LeaderboardPage from './components/LeaderboardPage';
 import QuestionPage from './components/QuestionPage';
+import NewQuestionPage from './components/NewQuestionPage';
 
 
 const App = () => {
-  console.log('App');
   return (
     <div className="App">
       <Router>
@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/questions/:id" element={<QuestionPage />} />
-          <Route path="/questions/new" element={<QuestionPage />} />
+          <Route path="/questions/new" element={<NewQuestionPage />} />
         </Routes>
       </Router>
     </div>

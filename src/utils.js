@@ -7,6 +7,13 @@ export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Convert a string to a color based on its hash
+ * @param {*} text 
+ * @param {*} min 
+ * @param {*} max 
+ * @returns 
+ */
 export const getColorFromText = (text, min=0xEE, max=0xFF) => {
   let hash = 0;
   for (let i = 0; i < text.length; i++) {
@@ -27,6 +34,15 @@ export const getColorFromText = (text, min=0xEE, max=0xFF) => {
   const bHex = blue.toString(16).padStart(2, '0');
 
   return `#${rHex}${gHex}${bHex}`
+}
 
+export const getForegroundColorForBackground = (backgroundColor, blackColor="#111111", whiteColor="#FFFFFF") => {
+  // Convert the background color to RGB
+  let r = parseInt(backgroundColor.substr(1,2), 16);
+  let g = parseInt(backgroundColor.substr(3,2), 16);
+  let b = parseInt(backgroundColor.substr(5,2), 16);
 
+  // Calculate the luminance
+  let luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? blackColor : whiteColor;
 }

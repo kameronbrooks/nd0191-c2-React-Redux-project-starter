@@ -1,6 +1,7 @@
 import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS,
+  REQUEST_ADD_QUESTION,
   REQUEST_QUESTIONS_ERROR,
   ADD_QUESTION,
   ADD_QUESTION_ERROR,
@@ -14,7 +15,8 @@ const initialState = {
   questions: {},
   loading: false,
   error: false,
-  errorMessage: null
+  errorMessage: null,
+  savingNewQuestion: false,
 };
 
 const questionsReducer = (state = initialState, action) => {
@@ -41,27 +43,38 @@ const questionsReducer = (state = initialState, action) => {
         error: true,
         errorMessage: "Error loading questions"
       };
+    case REQUEST_ADD_QUESTION:
+      return {
+        ...state,
+        savingNewQuestion: true,
+        error: false,
+        errorMessage: null
+      };
     case ADD_QUESTION:
       return {
         ...state,
-        questions: [...state.questions, action.question]
+        questions: {...state.questions,
+          [action.question.id]: action.question
+        },
+        savingNewQuestion: false
       };
     case ADD_QUESTION_ERROR:
       return {
         ...state,
         error: true,
-        errorMessage: "Error adding question"
+        errorMessage: "Error adding question",
+        savingNewQuestion: false
       };
     case ANSWER_QUESTION:
       return {
         ...state,
         questions: {
           ...state.questions,
-          [action.qid]: {
-            ...state.questions[action.qid],
+          [action.quid]: {
+            ...state.questions[action.quid],
             [action.answer]: {
-              ...state.questions[action.qid][action.answer],
-              votes: state.questions[action.qid][action.answer].votes.concat([action.authedUser])
+              ...state.questions[action.quid][action.answer],
+              votes: state.questions[action.quid][action.answer].votes.concat([action.authedUser])
             }
           }
         }

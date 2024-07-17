@@ -21,7 +21,7 @@ const HomePage = () => {
 
   // Fetch questions on load
   useEffect(() => {
-    (Object.values(questions).length == 0) && getQuestions(dispatch);
+    getQuestions(dispatch);
   },[]);
 
   // Redirect to login if not logged in
