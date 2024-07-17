@@ -29,6 +29,8 @@ const QuestionPage = () => {
 
   const author = (question) ? users[question.author] : null;
 
+  const randomPossibleQuestions = Object.values(questions).filter((q) => !Utils.hasUserAnsweredQuestion(user.id, q) && q.id !== question.id);
+  const randomQuestion = randomPossibleQuestions[Math.floor(Math.random() * randomPossibleQuestions.length)];
 
   const selectOptionOne = (e) => {
     answerQuestion(user.id, question.id, 'optionOne', dispatch);
@@ -56,7 +58,11 @@ const QuestionPage = () => {
       <Container>
         <div className='question-nav'>
           <Link to="/"> &lt; Back</Link>
-          <Link to="/"> Random &gt; </Link>
+          {
+            randomQuestion && (
+              <Link to={`/questions/${randomQuestion.id}`}> Random &gt; </Link>
+            )
+          }
         </div>
         <div >
           {

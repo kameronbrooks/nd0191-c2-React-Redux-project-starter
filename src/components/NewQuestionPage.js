@@ -31,7 +31,6 @@ const NewQuestionPage = () => {
         <Container>
           <div className='question-nav'>
             <Link to="/"> &lt; Back</Link>
-            <Link to="/"> Random &gt; </Link>
           </div>
           <div >
             {
