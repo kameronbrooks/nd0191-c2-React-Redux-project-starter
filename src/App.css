@@ -153,6 +153,7 @@ body {
   border: 1px solid #444;
   border-radius: 5px 5px 5px 5px;
   box-shadow: 0 10px 7px -4px rgba(0, 0, 0, 0.2);
+  background-color: rgb(230, 234, 240);
 }
 
 .justify-center {
@@ -185,9 +186,17 @@ body {
 
 .answer-button {
   width: 100%;
+  filter: brightness(1);
+  transform: scale(1);
+  transition: filter 0.2s, transform 0.2s !important;
+}
+.answer-button:hover {
+  filter: brightness(1.2);
+  transform: scale(1.03);
 }
 
 .results-div {
+  background-color: rgb(230, 234, 240);
   padding: 10px 10px 10px 10px;
   border: #444 1px solid;
   border-radius: 5px 5px 5px 5px;
@@ -207,6 +216,7 @@ body {
 }
 
 .results-details {
+  
   flex: 0 0 50%;
   max-width: 50%;
   padding: 10px 10px 10px 10px;

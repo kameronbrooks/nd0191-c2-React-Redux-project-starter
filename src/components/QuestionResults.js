@@ -9,6 +9,7 @@ const QuestionResults = ({ question, authedUser }) => {
 
   const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length;
 
+  // Chart data
   const data ={
     labels: [question.optionOne.text, question.optionTwo.text],
     datasets: [{
@@ -30,6 +31,7 @@ const QuestionResults = ({ question, authedUser }) => {
       }
     }
   };
+
   return (
     <div className="results-div">
       <div className="title">
