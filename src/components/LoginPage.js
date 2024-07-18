@@ -57,6 +57,7 @@ const LoginPage = () => {
               required
               placeholder='Username'
               value={username}
+              id='username-input'
               onChange={(e) => {
                 setUsername(e.target.value)}
               }
@@ -71,6 +72,7 @@ const LoginPage = () => {
               required
               placeholder='Password'
               type='password'
+              id='password-input'
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value)}
@@ -87,6 +89,7 @@ const LoginPage = () => {
             className='ms-auto'
             variant='dark'
             type='submit'
+            id='login-button'
           >Login</Button>}
           
         </Form>

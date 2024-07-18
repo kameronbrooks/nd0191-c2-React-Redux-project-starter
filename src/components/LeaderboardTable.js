@@ -7,6 +7,12 @@ const LeaderboardTable = () => {
 
   const users = useSelector(state => state.users.users);
   const isLoading = useSelector(state => state.users.loading);
+
+  // Check if users already exist in the store
+  // If they do, we can render the table immediately 
+  // while we wait for the API to respond
+  const alreadyHasUsers = Object.keys(users).length > 0;
+
   const dispatch = useDispatch();
 
   const objectKeyCount = (obj) => Object.keys(obj).length;
@@ -20,7 +26,7 @@ const LeaderboardTable = () => {
   },[])
 
 
-  return !isLoading ? (
+  return (!isLoading || alreadyHasUsers) ? (
     <Table striped bordered >
       <thead>
         <tr>

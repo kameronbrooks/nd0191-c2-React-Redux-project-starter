@@ -161,11 +161,14 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
 }
 
 export function _saveQuestion (question) {
+  const id = Math.floor(Math.random() * 1000);
   return new Promise((resolve, reject) => {
     if (!question.optionOneText || !question.optionTwoText || !question.author) {
       reject("Please provide optionOneText, optionTwoText, and author");
+      return;
     }
 
+    const authorName = question.author;
     const formattedQuestion = formatQuestion(question)
     setTimeout(() => {
       questions = {
@@ -175,14 +178,14 @@ export function _saveQuestion (question) {
 
       // Update the user's questions list
       const userQuestionList = (
-        users[question.author].questions.includes()) ? 
-        users[question.author].questions : 
-        [...( users[question.author].questions), formattedQuestion.id];
+        users[authorName].questions.includes(formattedQuestion.id)) ? 
+        users[authorName].questions : 
+        [...( users[authorName].questions), formattedQuestion.id];
 
       users = {
         ...users,
-        [question.author]: {
-          ...users[question.author],
+        [authorName]: {
+          ...users[authorName],
           questions: userQuestionList
         }
       }
@@ -195,6 +198,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
   return new Promise((resolve, reject) => {
     if (!authedUser || !qid || !answer) {
       reject("Please provide authedUser, qid, and answer");
+      return;
     }
 
     setTimeout(() => {

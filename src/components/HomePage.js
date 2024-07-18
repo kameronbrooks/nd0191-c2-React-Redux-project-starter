@@ -17,6 +17,8 @@ const HomePage = () => {
   const questions = useSelector((state) => state.questions.questions);
   const questionsLoading = useSelector((state) => state.questions.loading);
 
+  const alreadyHasQuestions = Object.values(questions).length > 0;
+
   const dispatch = useDispatch();
 
   // Fetch questions on load
@@ -38,14 +40,14 @@ const HomePage = () => {
           questions={
             Object.values(questions).filter((q)=>!Utils.hasUserAnsweredQuestion(user.id, q))
           }
-          loading={questionsLoading}
+          loading={questionsLoading && !alreadyHasQuestions}
         />
         <QuestionBucket 
           name="Answered Questions" 
           questions={
             Object.values(questions).filter((q)=>Utils.hasUserAnsweredQuestion(user.id, q))
           }
-          loading={questionsLoading}
+          loading={questionsLoading && !alreadyHasQuestions}
         />
       </Container>
     </div>
