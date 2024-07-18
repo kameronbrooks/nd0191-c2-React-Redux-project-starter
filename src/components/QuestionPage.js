@@ -9,6 +9,7 @@ import { Form, InputGroup, Button, ButtonGroup, Row, Col } from 'react-bootstrap
 import { getQuestions, answerQuestion } from '../actions/questionActions';
 import { fetchUsers } from '../actions/userActions';
 import * as Utils from '../utils';
+import Page404 from './Page404';
 
 import QuestionAnswerInput from './QuestionAnswerInput';
 import QuestionResults from './QuestionResults'
@@ -29,7 +30,7 @@ const QuestionPage = () => {
 
   const author = (question) ? users[question.author] : null;
 
-  const randomPossibleQuestions = Object.values(questions).filter((q) => !Utils.hasUserAnsweredQuestion(user.id, q) && q.id !== question.id);
+  const randomPossibleQuestions = Object.values(questions).filter((q) => !Utils.hasUserAnsweredQuestion(user.id, q) && (question && q.id !== question.id));
   const randomQuestion = randomPossibleQuestions[Math.floor(Math.random() * randomPossibleQuestions.length)];
 
   const selectOptionOne = (e) => {
@@ -64,34 +65,43 @@ const QuestionPage = () => {
             )
           }
         </div>
-        <div >
-          {
-            author && (
-              <div className='justify-center'>
-                <div>
-                  <img className="author-img" src={author.avatarURL} alt={author.name} /><br />
-                  <div style={{ textAlign: 'center' }}>Question by {author.name}</div>
-                </div>
-              </div>
-            )
-          }
-        </div>
-        <div>
-          <h3 style={{ textAlign: 'center' }}>Would You Rather...</h3>
-          <hr />
-        </div>
         {
-
-          Utils.hasUserAnsweredQuestion(user.id, question) ? (
-            <QuestionResults question={question} authedUser={user.id} />
+          (!question) ? (
+            <Page404 />
           ) : (
-            <QuestionAnswerInput
-              question={question}
-              selectOptionOne={selectOptionOne}
-              selectOptionTwo={selectOptionTwo}
-            />
+            <>
+              <div >
+                {
+                  author && (
+                    <div className='justify-center'>
+                      <div>
+                        <img className="author-img" src={author.avatarURL} alt={author.name} /><br />
+                        <div style={{ textAlign: 'center' }}>Question by {author.name}</div>
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+              <div>
+                <h3 style={{ textAlign: 'center' }}>Would You Rather...</h3>
+                <hr />
+              </div>
+              {
+
+                Utils.hasUserAnsweredQuestion(user.id, question) ? (
+                  <QuestionResults question={question} authedUser={user.id} />
+                ) : (
+                  <QuestionAnswerInput
+                    question={question}
+                    selectOptionOne={selectOptionOne}
+                    selectOptionTwo={selectOptionTwo}
+                  />
+                )
+              }
+            </>
           )
         }
+
 
 
       </Container>
