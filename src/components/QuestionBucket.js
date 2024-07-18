@@ -18,9 +18,15 @@ const QuestionBucket = ({ questions, name, loading }) => {
             </div>
           ) : 
           (
-            questions.map((question) => (
-              <Question key={question.id} question={question} />
-            ))
+            (questions.length === 0) ? (
+              <div className="spinner-container">
+                No questions found
+              </div>
+            ) : (
+              questions.map((question) => (
+                <Question key={question.id} question={question} />
+              ))
+            ) 
           )
         }
       </div>
