@@ -12,10 +12,11 @@ const _requestUserLogin = () => {
   }
 }
 
-const _loginUser = (user) => {
+const _loginUser = (user, returnTargetURL = "/") => {
   return {
     type: LOGIN_USER,
-    user
+    user,
+    returnTargetURL
   }
 }
 
@@ -31,7 +32,7 @@ const _loginFailed = () => {
   }
 }
 
-export const userLoginRequest = async (username, password, dispatch) => {
+export const userLoginRequest = async (username, password, dispatch, returnTargetURL) => {
   dispatch(_requestUserLogin());
 
   const response = await API._getUsers();
@@ -41,7 +42,7 @@ export const userLoginRequest = async (username, password, dispatch) => {
 
   // if the user is found, dispatch the loginUser action with the user
   if (user) {
-    dispatch(_loginUser(user));
+    dispatch(_loginUser(user, returnTargetURL));
   } else {
     dispatch(_loginFailed());
   }

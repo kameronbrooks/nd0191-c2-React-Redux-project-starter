@@ -7,6 +7,7 @@ import HomePage from './components/HomePage';
 import LeaderboardPage from './components/LeaderboardPage';
 import QuestionPage from './components/QuestionPage';
 import NewQuestionPage from './components/NewQuestionPage';
+import PrivateRoute from './components/PrivateRoute';
 
 
 const App = () => {
@@ -15,10 +16,29 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route path="/questions/:id" element={<QuestionPage />} />
-          <Route path="/questions/new" element={<NewQuestionPage />} />
+          
+          <Route path="/" element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          } />
+          <Route path="/leaderboard" element={
+            <PrivateRoute>
+              <LeaderboardPage />
+            </PrivateRoute>
+          } />
+          <Route path="/questions/:id" element={
+            <PrivateRoute>
+              <QuestionPage />
+            </PrivateRoute>
+          } />
+          <Route path="/questions/new" element={
+            <PrivateRoute>
+              <NewQuestionPage />
+            </PrivateRoute>
+          } />
+
+          
         </Routes>
       </Router>
     </div>

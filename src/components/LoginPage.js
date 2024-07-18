@@ -9,7 +9,7 @@ import {userLoginRequest} from '../actions/loginActions';
 
 import {useState, useContext} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate , useLocation} from 'react-router-dom';
 
 const LoginPage = () => {
 
@@ -22,6 +22,10 @@ const LoginPage = () => {
   const loginError = useSelector(state => state.login.loginError);
   const loginErrorMessage = useSelector(state => state.login.loginErrorMessage);
   const loading = useSelector(state => state.login.loading);
+
+  const location = useLocation();
+  const returnTargetURL = location.state?.path;
+  
 
   const dispatch = useDispatch();
 
@@ -41,7 +45,7 @@ const LoginPage = () => {
   }
 
   if (isLoggedIn) {
-    return <Navigate to='/' />
+    return <Navigate to={returnTargetURL || "/"} />
   }
 
   return (

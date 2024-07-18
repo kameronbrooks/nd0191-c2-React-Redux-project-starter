@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 
-import { Form, InputGroup, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
+import { Form, InputGroup, Button, ButtonGroup, Row, Col, Spinner} from 'react-bootstrap';
 import { getQuestions, answerQuestion } from '../actions/questionActions';
 import { fetchUsers } from '../actions/userActions';
 import * as Utils from '../utils';
@@ -25,6 +25,7 @@ const QuestionPage = () => {
 
   const queryParams = useParams();
   const question = useSelector(state => state.questions.questions[queryParams.id]);
+  const questionsLoading = useSelector(state => state.questions.loading);
 
   const dispatch = useDispatch();
 
@@ -48,11 +49,6 @@ const QuestionPage = () => {
     (Object.values(users).length === 0) && fetchUsers(dispatch);
   }, []);
 
-  // Redirect to login if not logged in
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />
-  }
-
   return (
     <div>
       <Navbar />
@@ -66,7 +62,7 @@ const QuestionPage = () => {
           }
         </div>
         {
-          (!question) ? (
+          (!question && !questionsLoading) ? (
             <Page404 />
           ) : (
             <>
@@ -87,15 +83,22 @@ const QuestionPage = () => {
                 <hr />
               </div>
               {
-
-                Utils.hasUserAnsweredQuestion(user.id, question) ? (
-                  <QuestionResults question={question} authedUser={user.id} />
+                questionsLoading ? (
+                  <div className='justify-center'>
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </div>
                 ) : (
-                  <QuestionAnswerInput
-                    question={question}
-                    selectOptionOne={selectOptionOne}
-                    selectOptionTwo={selectOptionTwo}
-                  />
+                  Utils.hasUserAnsweredQuestion(user.id, question) ? (
+                    <QuestionResults question={question} authedUser={user.id} />
+                  ) : (
+                    <QuestionAnswerInput
+                      question={question}
+                      selectOptionOne={selectOptionOne}
+                      selectOptionTwo={selectOptionTwo}
+                    />
+                  )
                 )
               }
             </>

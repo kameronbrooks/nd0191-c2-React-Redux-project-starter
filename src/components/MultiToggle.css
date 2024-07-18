@@ -1,0 +1,40 @@
+.multi-toggle {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2px 2px 2px 2px;
+  background-color: #DDD;
+  border-radius: 25px 25px 25px 25px;
+  width: 400px;
+  height: 50px;
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3);
+  margin: 3px 3px 3px 3px;
+}
+.multi-toggle > button {
+  width: 100%;
+  border: none;
+  background: rgba(0,0,0,0);
+  user-select: none;
+}
+
+.multi-toggle > button:first-child {
+  border-radius: 25px 0px 0px 25px;
+}
+
+.multi-toggle > button:last-child {
+  border-radius: 0px 25px 25px 0px;
+}
+
+.multi-toggle-slider {
+  position: absolute;
+  z-index: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 50px;
+  transition: transform ease-in-out 0.3s;
+  border-radius: 25px 25px 25px 25px;
+  width: 20%;
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  font-weight: 500;
+  user-select: none;
+}

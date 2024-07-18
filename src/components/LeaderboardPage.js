@@ -13,12 +13,6 @@ const LeaderboardPage = () => {
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
   const user = useSelector(state => state.login.user);
   
-
-
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />
-  }
-
   return (
     <div>
       <Navbar />

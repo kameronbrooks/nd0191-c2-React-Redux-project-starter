@@ -6,7 +6,8 @@ const initialState = {
   isLoggedIn: false,
   loginError: false,
   loginErrorMessage: null,
-  loading: false
+  loading: false,
+  returnTargetURL: "/",
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -25,13 +26,15 @@ const loginReducer = (state = initialState, action) => {
         isLoggedIn: true,
         loginError: false,
         loginErrorMessage: null,
-        loading: false
+        loading: false,
+        returnTargetURL: action.returnTargetURL
       };
     case LOGOUT_USER:               // Dispatched when the user clicks the logout button
       return {
         ...state,
         user: null,
-        isLoggedIn: false
+        isLoggedIn: false,
+        returnTargetURL: "/"
       };
     case LOGIN_USER_ERROR:          // Dispatched when the user enters an invalid username or password
       return {
